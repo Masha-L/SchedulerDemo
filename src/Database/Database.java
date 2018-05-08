@@ -3,8 +3,11 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.TreeMap;
 /**
- * Provides the database of the offered classes.
+ * Provides the database for the offered classes.
+ * Uses TreeMap to map departments' names to the list 
+ * of subjects they offer.
  * 
+ * @author Maria and Sofia
  */
 public class Database {
 

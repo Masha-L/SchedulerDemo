@@ -4,6 +4,8 @@ package Database;
  * Provides an abstraction for a single class time. 
  * Uses 24-hour format to hold the start/end time (0.00 - 23.59) 
  * Uses a short number to hold a day of the week (1 - Mon, 2 - Tue ... 7 - Sun).
+ * 
+ * @author Maria and Sofia
  */
 public class TimePeriod {
 	// Start time of the class
@@ -12,7 +14,7 @@ public class TimePeriod {
 	private double endTime;
 	// Week day of the class
 	private int weekDay;
-	
+
 	/**
 	 * Constructs a Time Period.
 	 *

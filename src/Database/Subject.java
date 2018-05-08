@@ -6,6 +6,8 @@ import Logic.SchedNode;
  * Holds the information about a subject: 
  * the lists of lecture sections and the labs;
  * its name, description, and the number of credits.
+ * 
+ * @author Maria and Sofia
  */
 public class Subject implements Comparable {
 

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 /**
  * Holds the information for a given section:
  * the list of lectures/labs and the name.
+ * 
+ * @author Maria and Sofia
  */
 public class Section {
 

@@ -9,6 +9,8 @@ import View.SchedController;
 
 /**
  * The main class that runs the application. 
+ * 
+ * @author Maria and Sofia
  */
 public class SchedApp {
 

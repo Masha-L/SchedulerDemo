@@ -12,31 +12,29 @@ import Database.Subject;
  */
 public class SchedSolver {
 
-	// Holds the schedule options: indexes of the nodes
-	private ArrayList<int[]> scheduleNodes;
+	/*
+	 * Holds the schedule options represented
+	 * by the indexes of the nodes
+	 */
+	private ArrayList<int[]> scheduleNodes = new ArrayList<int[]>();
 	// The node matrix
 	private SchedMatrix matrix;
-	// All schedule nodes
+	// The ordered list of all schedule nodes
 	private ArrayList<SchedNode> allNodes;
 
 	/**
-	 * Constructor 
+	 * Constructor.
+	 * Creates the list of nodes, builds the adjacency matrix,
+	 * and generates the list of schedules.
 	 * 
 	 * @param classes chosen by user
 	 * @param numS the number of the subjects the student wants to take
 	 */
 	public SchedSolver(ArrayList<Subject> classes, int numS) {
 
-		//creates nodes
 		classesToNodes(classes);
-
-		//creates new matrix
 		matrix = new SchedMatrix(allNodes, numS);	
-
-		//creates an array list of the schedule nodes
-		scheduleNodes = new ArrayList<int[]>();
-
-		//finds the valid schedules
+		
 		createValidSchedules(numS);
 	}
 
@@ -109,7 +107,7 @@ public class SchedSolver {
 	 * @param numS 
 	 */
 	private void createValidSchedules(int numS) {
-
+		
 		traverseGraph(new int[numS], matrix.validNodes(), numS, 0, 0);	
 	}
 
