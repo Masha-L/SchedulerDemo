@@ -7,6 +7,8 @@ import Database.Subject;
 
 /**
  * The main logic class that creates the schedule options
+ * 
+ * @author Maria and Sofia
  */
 public class SchedSolver {
 
@@ -25,37 +27,50 @@ public class SchedSolver {
 	 */
 	public SchedSolver(ArrayList<Subject> classes, int numS) {
 
+		//creates nodes
 		classesToNodes(classes);
+
+		//creates new matrix
 		matrix = new SchedMatrix(allNodes, numS);	
+
+		//creates an array list of the schedule nodes
 		scheduleNodes = new ArrayList<int[]>();
 
+		//finds the valid schedules
 		createValidSchedules(numS);
 	}
 
 
 	/**
 	 * Creates all possible combinations of valid subjects and adds them to the list of schedules
-	 * 
-	 * @param sched the current schedule option
-	 * @param chFrom array that keeps all valid and unused subjects
-	 * @param leftToAdd 
-	 * @param gen 
-	 * @param startFrom 
+	 *
+	 * @param sched is an empty array of the size K 
+	 * @param validNodes is an array of all valid vertices 
+	 * @param leftToAdd is (K - gen) for the number of subjects left to add
+	 * @param gen is the level of recursion (generation)
+	 * @param startFrom is the pointer to the next element to be filled
 	 */
+
 	private void traverseGraph(int[] sched, int[] chFrom, int leftToAdd, int gen, int startFrom) {
 
+		//checks that we are not out of bounds yet and haven't explored all posible options
 		if (gen < sched.length && startFrom < chFrom.length) {
 
+			//sets up the pointer to the element to be added
 			for (int newElm = gen; newElm < sched.length; newElm++) {
+				//sets up the pointer in the array of the potential options
 				for (int nextElm = startFrom; nextElm < chFrom.length; nextElm++) {
-
+					//adds the new element
 					sched[newElm] = chFrom[nextElm];
-
+					//if this schedule is complete
 					if (leftToAdd == 1) {
+						//checks if the chosen subgraph is complete
 						if (isComplete(sched, 0)) {
+							 //scheduleList is the list of all complete schedules
 							scheduleNodes.add(sched.clone());
 						}
 					}
+					//recursive call on the next cycle
 					traverseGraph(sched, chFrom, leftToAdd - 1, newElm + 1, nextElm + 1);
 				}
 			}

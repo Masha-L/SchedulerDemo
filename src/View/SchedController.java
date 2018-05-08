@@ -28,19 +28,25 @@ import Logic.SchedSolver;
  * Sets up the UI, displays the interactive elements.
  * Takes the user input and sends it to the logic segment.
  *
+ * @author Maria and Sofia
  */
 public class SchedController extends JPanel implements ActionListener {
+	
+	//Error messages
 	public static final String REPETITIONS_MESSAGE = "No repetitions allowed!";
 	public static final String EMPTY_FIELD_MESSAGE = "Fill out all the fields!";
 	public static final String FEW_CLASSES_MESSAGE = "Not enough classes chosen!";
 
+	//the combobox data
 	private static final int MIN_NUMBER_CLASSES = 1;
 	private static final int MAX_NUMBER_CLASSES = 8;
 
 	private Database database;
 	private JPanel selectionPanel = new JPanel();
+	
 	private JLabel greeting = new JLabel("What classes do you have in mind? ");
 	private JLabel numberLabel = new JLabel("The optimal number of classes is");
+	
 	private JComboBox<Integer> classesNumber = new JComboBox<Integer>();
 	private ArrayList<JComboBox<Subject>> chosenSubjects = new ArrayList<JComboBox<Subject>>();
 
@@ -51,6 +57,7 @@ public class SchedController extends JPanel implements ActionListener {
 	 */
 	public SchedController(Database data) {
 		super(new BorderLayout());
+		
 		database = data;
 
 		setupElements();
