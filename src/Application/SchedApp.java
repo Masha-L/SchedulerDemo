@@ -20,7 +20,7 @@ public class SchedApp {
 	 */
 	public static void main(String[] args) {
 
-		JFrame frame = new JFrame("־דנמלםûי ְנבאכוע");
+		JFrame frame = new JFrame("Scheduler");
 		frame.setSize(500, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(new SchedController(createTestDatabase()));
@@ -28,60 +28,9 @@ public class SchedApp {
 	}
 
 	/**
-	 * Short version of database
+	 * Predefined contents of the database
 	 * 
-	 * @return
-	 */
-	private static Database createDatabase() {	
-
-		ArrayList<TimePeriod> introLecture1 = new ArrayList<TimePeriod>();
-		introLecture1.add(new TimePeriod(11.30, 12.45, 2));
-		introLecture1.add(new TimePeriod(11.30, 12.45, 4));
-		ArrayList<TimePeriod> introLab1 = new ArrayList<TimePeriod>();
-		introLab1.add(new TimePeriod(8.30, 9.20, 5));
-		ArrayList<TimePeriod> introLab2 = new ArrayList<TimePeriod>();
-		introLab2.add(new TimePeriod(9.55, 10.45, 5));				
-		ArrayList<Section> classes1 = new ArrayList<Section>();
-		ArrayList<Section> labs1 = new ArrayList<Section>();
-		classes1.add(new Section("Lecture 1", introLecture1));
-		labs1.add(new Section("Lab 1", introLab1));
-		labs1.add(new Section("Lab 2", introLab2));		
-
-		ArrayList<TimePeriod> algoLecture1 = new ArrayList<TimePeriod>();
-		algoLecture1.add(new TimePeriod(14.55, 16.10, 1));
-		algoLecture1.add(new TimePeriod(14.55, 16.10, 3));
-		algoLecture1.add(new TimePeriod(14.55, 15.45, 5));			
-		ArrayList<Section> classes2 = new ArrayList<Section>();
-		ArrayList<Section> labs2 = new ArrayList<Section>();
-		classes2.add(new Section("Lecture 1", algoLecture1));		
-
-		ArrayList<TimePeriod> electroLecture1 = new ArrayList<TimePeriod>();
-		electroLecture1.add(new TimePeriod(13.30, 16.20, 2));
-		electroLecture1.add(new TimePeriod(13.30, 16.20, 4));				
-		ArrayList<Section> classes3 = new ArrayList<Section>();
-		ArrayList<Section> labs3 = new ArrayList<Section>();
-		classes3.add(new Section("Lecture 1", electroLecture1));
-
-		ArrayList<TimePeriod> emLecture1 = new ArrayList<TimePeriod>();
-		emLecture1.add(new TimePeriod(9.30, 10.45, 1));
-		emLecture1.add(new TimePeriod(9.30, 10.45, 3));			
-		ArrayList<Section> classes4 = new ArrayList<Section>();
-		ArrayList<Section> labs4 = new ArrayList<Section>();
-		classes4.add(new Section("Lecture 1", emLecture1));
-
-		Database data = new Database();	
-		data.addSubject("Computer Science", new Subject("Intro to Comp Systems", classes1, labs1));
-		data.addSubject("Computer Science", new Subject("Algorithms", classes2, null));
-		data.addSubject("Physics", new Subject("Electronics", classes3, labs3));
-		data.addSubject("Physics", new Subject("E&M Theory", classes4, labs4));
-
-		return data;
-	}
-
-	/**
-	 * Long version of database
-	 * 
-	 * @return
+	 * @return the database
 	 */
 	private static Database createTestDatabase() {	
 

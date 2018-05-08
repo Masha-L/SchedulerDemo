@@ -11,28 +11,27 @@ public class Subject implements Comparable {
 
 	// The name of the subject
 	private String name;
-	// The list of lectures
+	// The list of lectures (may be null)
 	private ArrayList<Section> lectures;
 	// The list of labs (may be null)
 	private ArrayList<Section> labs;
 
 	/**
-	 * Constructor 
+	 * Constructor for a subject (name).
+	 * The method is required for the GUI.
 	 * 
-	 * @param name
+	 * @param name the name of the subject
 	 */
 	public Subject(String name) {
 		this.name = name;
 	}
 
 	/**
-	 * Constructs a subject
+	 * Constructs a subject (name, lectures, labs)
 	 * 
 	 * @param name the name
-	 * @param description the description
 	 * @param lectures the list of lectures
 	 * @param labs the list of labs
-	 * @param credits the number of credits
 	 */
 	public Subject(String name, ArrayList<Section> lectures, ArrayList<Section> labs) {
 		this.name = name;
@@ -50,6 +49,7 @@ public class Subject implements Comparable {
 
 		ArrayList<SchedNode> nodeList = new ArrayList<SchedNode>();
 
+		// A node with no lectures
 		if (lectures.isEmpty()) {
 			for (Section lab : labs) {
 				nodeList.add(new SchedNode(null, lab, this));
@@ -57,6 +57,7 @@ public class Subject implements Comparable {
 			}
 		}
 
+		// A node with no labs
 		else if (labs.isEmpty()) {
 			for (Section lecture : lectures) {
 				nodeList.add(new SchedNode(lecture, null, this));
@@ -64,6 +65,7 @@ public class Subject implements Comparable {
 			}
 		}
 
+		// A node with both labs and lectures
 		else {
 			for (Section lecture : lectures) {
 				for (Section lab : labs) {
@@ -76,14 +78,29 @@ public class Subject implements Comparable {
 		return nodeList;
 	}
 
+	/**
+	 * Returns the name of the subject
+	 * 
+	 * @return the subject's name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Returns the string representation of the subject
+	 * 
+	 * @return the string representation of the subject
+	 */
 	public String toString() {
 		return name;
 	}
 
+	/**
+	 * Compares the subject to the other object
+	 * 
+	 * @return 0 if the subjects are equal
+	 */
 	@Override
 	public int compareTo(Object o) {
 		if (this != o) {
