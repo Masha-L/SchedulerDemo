@@ -1,6 +1,6 @@
 package Database;
 import java.util.ArrayList;
-import Logic.SchedNode;
+import Logic.Node;
 
 /**
  * Holds the information about a subject: 
@@ -9,7 +9,7 @@ import Logic.SchedNode;
  * 
  * @author Maria and Sofia
  */
-public class Subject implements Comparable {
+public class Subject {
 
 	// The name of the subject
 	private String name;
@@ -47,14 +47,14 @@ public class Subject implements Comparable {
 	 * @precondition subject has at least one lecture section or one lab
 	 * @return the list of the subject's nodes
 	 */
-	public ArrayList<SchedNode> getAllNodes() {
+	public ArrayList<Node> getAllNodes() {
 
-		ArrayList<SchedNode> nodeList = new ArrayList<SchedNode>();
+		ArrayList<Node> nodeList = new ArrayList<Node>();
 
 		// A node with no lectures
 		if (lectures.isEmpty()) {
 			for (Section lab : labs) {
-				nodeList.add(new SchedNode(null, lab, this));
+				nodeList.add(new Node(null, lab, this));
 
 			}
 		}
@@ -62,7 +62,7 @@ public class Subject implements Comparable {
 		// A node with no labs
 		else if (labs.isEmpty()) {
 			for (Section lecture : lectures) {
-				nodeList.add(new SchedNode(lecture, null, this));
+				nodeList.add(new Node(lecture, null, this));
 
 			}
 		}
@@ -71,7 +71,7 @@ public class Subject implements Comparable {
 		else {
 			for (Section lecture : lectures) {
 				for (Section lab : labs) {
-					nodeList.add(new SchedNode(lecture, lab, this));
+					nodeList.add(new Node(lecture, lab, this));
 				}
 
 			}
@@ -96,18 +96,5 @@ public class Subject implements Comparable {
 	 */
 	public String toString() {
 		return name;
-	}
-
-	/**
-	 * Compares the subject to the other object
-	 * 
-	 * @return 0 if the subjects are equal
-	 */
-	@Override
-	public int compareTo(Object o) {
-		if (this != o) {
-			return -1;
-		}
-		return 0;
 	}
 }

@@ -34,7 +34,7 @@ public class TimePeriod {
 	 * @param timePeriod - another time period 
 	 * @return true if they overlap and false if they do not
 	 */
-	public boolean overlap(TimePeriod timePeriod) {
+	public boolean overlaps(TimePeriod timePeriod) {
 		
 		if (weekDay == timePeriod.getWeekDay()) {
 			if (startTime <= timePeriod.getEndTime() && startTime >= timePeriod.getStartTime())

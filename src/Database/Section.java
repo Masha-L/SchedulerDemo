@@ -39,7 +39,7 @@ public class Section {
 		// Compares all classes to find a conflict
 		for (TimePeriod firstClass : classes)
 			for (TimePeriod secondClass : otherClasses) 
-				if (firstClass.overlap(secondClass))
+				if (firstClass.overlaps(secondClass))
 					return true;		
 		return false;
 	}
@@ -54,11 +54,11 @@ public class Section {
 	}
 		
 	/**
-	 * Returns the name of the section
+	 * Returns the string representation of the section
 	 * 
-	 * @return name of the section
+	 * @return the name of the section
 	 */
-	public String getName() {
+	public String toString() {
 		return name;
 	}
 }

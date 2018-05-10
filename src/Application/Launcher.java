@@ -5,14 +5,12 @@ import Database.Database;
 import Database.Section;
 import Database.Subject;
 import Database.TimePeriod;
-import View.SchedController;
+import View.Controller;
 
 /**
  * The main class that runs the application. 
- * 
- * @author Maria and Sofia
  */
-public class SchedApp {
+public class Launcher {
 
 	/**
 	 * The main method.
@@ -25,7 +23,7 @@ public class SchedApp {
 		JFrame frame = new JFrame("Scheduler");
 		frame.setSize(500, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add(new SchedController(createTestDatabase()));
+		frame.add(new Controller(createTestDatabase()));
 		frame.setVisible(true);
 	}
 
