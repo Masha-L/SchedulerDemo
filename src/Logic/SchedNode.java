@@ -3,25 +3,24 @@ import Database.Section;
 import Database.Subject;
 
 /**
- * The schedule node - combination of a lab section and lecture section
- * Contains a reference to the Subject
+ * A unique combination of a subject's lab and lecture sections.
  * 
  * @author Maria and Sofia
  */
 public class SchedNode {
-	//lecture section
+	// The lecture section
 	private Section lectureSection; 
-	//lab section
+	// The lab section
 	private Section labSection;
-	//subject reference
+	// The reference to the subject
 	private Subject subject;
 
 	/**
 	 * Constructor
 	 * 
-	 * @param lectureSection - a lecture section for this node
-	 * @param labSection - a lab section for this node 
-	 * @param subject - a reference to the subject
+	 * @param lectureSection - a lecture section 
+	 * @param labSection - a lab section 
+	 * @param subject - the subject
 	 */
 	public SchedNode(Section lectureSection, Section labSection, Subject subject) {
 		this.lectureSection = lectureSection;
@@ -32,7 +31,7 @@ public class SchedNode {
 	/**
 	 * Returns the subject of the node
 	 * 
-	 * @return the subject the reference to the course
+	 * @return the subject reference
 	 */
 	public Subject getSubject() {
 		return subject;
@@ -41,7 +40,7 @@ public class SchedNode {
 	/**
 	 * Returns the lecture section
 	 * 
-	 * @return lectureSection the lecture section of the node
+	 * @return the lecture section of the node
 	 */
 	public Section getLectureSection() {
 		return lectureSection;
@@ -50,7 +49,7 @@ public class SchedNode {
 	/**
 	 * Returns the lab section
 	 * 
-	 * @return labSection the lab section of the node 
+	 * @return the lab section of the node 
 	 */
 	public Section getLabSection() {
 		return labSection;
@@ -58,37 +57,33 @@ public class SchedNode {
 
 
 	/**
-	 * Checks if the node conflicts with this one
+	 * Checks if this node conflicts with the other
 	 * 
-	 * @param node the node to compare with
+	 * @param node - the node to compare with
 	 * @return true if there is a conflict
 	 */
 	public boolean conflicts(SchedNode node) {
 
-		//checks if the nodes are the same subject nodes 
-		// sets them in conflict if they are
+		// If the subject is the same, there is a conflict.
 		if (subject.equals(node.getSubject())) 
 			return true;
 
 		Section lectures = node.getLectureSection();
 		Section labs = node.getLabSection();
 
-		//checks if lectures conflict with each other
+		// Checks if lectures and/or labs of the nodes have conflicts
 		if (lectureSection != null && lectures != null)
 			if (lectureSection.conflicts(lectures))
 				return true;
 
-		//checks if lectures from this node and labs from another are in conflict
 		if (lectureSection != null && labs != null)
 			if (lectureSection.conflicts(labs))
 				return true;
 
-		//checks if labs from this node and lectures from another are in conflict
 		if (labSection != null && lectures != null)
 			if (labSection.conflicts(lectures)) 
 				return true;
 
-		//checks if labs from this node and labs from another are in conflict
 		if (labSection != null && labs != null)
 			if (labSection.conflicts(labs)) 
 				return true;
@@ -105,6 +100,11 @@ public class SchedNode {
 		return subject.getName();
 	}
 
+	/**
+	 * Returns the name of the lab
+	 * 
+	 * @return the lab name
+	 */
 	public String getLabName() {
 		if (labSection != null) {
 			return labSection.getName();		

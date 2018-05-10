@@ -24,8 +24,8 @@ public class Database {
 	/**
 	 * Adds a new subject to the database
 	 * 
-	 * @param department the department's name
-	 * @param subject the subject to add
+	 * @param department - the department's name
+	 * @param subject - the subject to add
 	 */
 	public void addSubject(String department, Subject subject) {
 		/*
@@ -71,7 +71,7 @@ public class Database {
 	 * Returns all subjects of the given department.
 	 * The method is required for the GUI.
 	 * 
-	 * @param depName department's name
+	 * @param depName - the department's name
 	 * @return the array of subjects
 	 */
 	public Subject[] getClasses(String depName) {

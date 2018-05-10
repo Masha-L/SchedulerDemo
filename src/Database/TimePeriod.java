@@ -18,9 +18,9 @@ public class TimePeriod {
 	/**
 	 * Constructs a Time Period.
 	 *
-	 * @param startTime the start time of the class
-	 * @param endTime the end time of the class 
-	 * @param weekDay the day of the week   
+	 * @param startTime - the start time of the class
+	 * @param endTime - the end time of the class 
+	 * @param weekDay - the day of the week   
 	 */	
 	public TimePeriod(double startTime, double endTime, int weekDay) {
 		this.startTime = startTime;
@@ -31,7 +31,7 @@ public class TimePeriod {
 	/**
 	 * Checks if two classes overlap
 	 * 
-	 * @param timePeriod another time period 
+	 * @param timePeriod - another time period 
 	 * @return true if they overlap and false if they do not
 	 */
 	public boolean overlap(TimePeriod timePeriod) {

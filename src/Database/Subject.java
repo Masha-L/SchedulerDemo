@@ -22,7 +22,7 @@ public class Subject implements Comparable {
 	 * Constructor for a subject (name).
 	 * The method is required for the GUI.
 	 * 
-	 * @param name the name of the subject
+	 * @param name - the name of the subject
 	 */
 	public Subject(String name) {
 		this.name = name;
@@ -31,9 +31,9 @@ public class Subject implements Comparable {
 	/**
 	 * Constructs a subject (name, lectures, labs)
 	 * 
-	 * @param name the name
-	 * @param lectures the list of lectures
-	 * @param labs the list of labs
+	 * @param name - the name
+	 * @param lectures - the list of lectures
+	 * @param labs - the list of labs
 	 */
 	public Subject(String name, ArrayList<Section> lectures, ArrayList<Section> labs) {
 		this.name = name;
@@ -44,7 +44,7 @@ public class Subject implements Comparable {
 	/**
 	 * Returns the list of the subject's nodes
 	 * 
-	 * @precondition: subject has at least one lecture section or one lab
+	 * @precondition subject has at least one lecture section or one lab
 	 * @return the list of the subject's nodes
 	 */
 	public ArrayList<SchedNode> getAllNodes() {

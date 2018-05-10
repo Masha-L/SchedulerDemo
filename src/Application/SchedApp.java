@@ -18,7 +18,7 @@ public class SchedApp {
 	 * The main method.
 	 * Sets up the controller, prepares the database.
 	 * 
-	 * @param args not used
+	 * @param args - not used
 	 */
 	public static void main(String[] args) {
 

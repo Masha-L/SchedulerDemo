@@ -20,8 +20,8 @@ public class SchedMatrix {
 	 * Constructor for the matrix
 	 * Takes the list of the chosen classes from the controller
 	 * 
-	 * @param nodes the list of the schedule nodes
-	 * @param numS the preferred number of classes 
+	 * @param nodes - the list of the schedule nodes
+	 * @param numS - the preferred number of classes 
 	 */
 	public SchedMatrix(ArrayList<SchedNode> nodes, int numS) {	
 
@@ -43,7 +43,7 @@ public class SchedMatrix {
 	 * Fills the adjacency matrix with boolean values 
 	 * where 'true' stands for a conflict between two nodes
 	 * 
-	 * @param nodes the list of nodes to fill the matrix with
+	 * @param nodes - the list of nodes to fill the matrix with
 	 */
 	private void buildMatrix(ArrayList<SchedNode> nodes) {
 
@@ -70,7 +70,7 @@ public class SchedMatrix {
 	 * Iteratively counts nodes's degrees to determine 
 	 * if they can be used in schedules
 	 * 
-	 * @param numS the preferred number of classes 
+	 * @param numS - the preferred number of classes 
 	 */
 	private void assignValidity(int numS) {
 		// True if iteration is not over
@@ -95,8 +95,8 @@ public class SchedMatrix {
 	 * desired number of classes. 
 	 * Updates the degree if appropriate, otherwise sets the node invalid.
 	 * 
-	 * @param node the node to calculate the degree
-	 * @param numS the preferred number of classes 
+	 * @param node - the node to calculate the degree
+	 * @param numS - the preferred number of classes 
 	 * @return false if the node did not become invalid
 	 */
 	private boolean becameInvalid(int node, int numS) {
@@ -122,7 +122,7 @@ public class SchedMatrix {
 	/**
 	 * Calculates the degree of a node.
 	 * 
-	 * @param node the node in the matrix
+	 * @param node - the node in the matrix
 	 * @return the degree of the node
 	 */
 	private int vertexDegree(int node) {
@@ -143,10 +143,9 @@ public class SchedMatrix {
 	/**
 	 * Sets the node invalid to be in a schedule
 	 * 
-	 * @param node the invalid node
+	 * @param node - the invalid node
 	 */
 	private void setNodeInvalid(int node) {
-
 		degrees[node] = -1;
 		// Decrements the number of the valid nodes
 		numValid--;
@@ -156,7 +155,7 @@ public class SchedMatrix {
 	/**
 	 * Checks if the node is valid
 	 * 
-	 * @param node the node to be checked
+	 * @param node - the node to be checked
 	 * @return true if the node is valid
 	 */
 	private boolean isValid(int node) {
@@ -189,8 +188,8 @@ public class SchedMatrix {
 	/**
 	 * Adds an edge between two nodes, if there is a conflict.
 	 * 
-	 * @param oneNode the first node
-	 * @param anotherNode the second node
+	 * @param oneNode - the first node
+	 * @param anotherNode - the second node
 	 */
 	private void addConflict(int oneNode, int anotherNode) {	
 		matrix[oneNode][anotherNode] = true;
@@ -199,8 +198,8 @@ public class SchedMatrix {
 	/**
 	 * Checks if two nodes are in conflict
 	 * 
-	 * @param oneNode the first node 
-	 * @param anotherNode the second node
+	 * @param oneNode - the first node 
+	 * @param anotherNode - the second node
 	 * @return true if the nodes are in conflict
 	 */
 	public boolean areInConflict(int oneNode, int anotherNode) {		
@@ -210,7 +209,7 @@ public class SchedMatrix {
 	/**
 	 * Returns all the relations of the node with the others
 	 * 
-	 * @param node the node 
+	 * @param node - the node 
 	 * @return the boolean[] 
 	 */
 	public boolean[] getNodeConnections(int node) {

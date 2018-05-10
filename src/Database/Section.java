@@ -12,15 +12,14 @@ public class Section {
 
 	// An array of classes/labs for the section
 	private ArrayList<TimePeriod> classes;
-
 	// The name of the section (e.g. Lab #1)
 	private String name;
 	
 	/**
 	 * Constructs a section (a set of lectures / a lab)
 	 * 
-	 * @param name the name of the section
-	 * @param classes the list of classes
+	 * @param name - the name of the section
+	 * @param classes - the list of classes
 	 */
 	public Section(String name, ArrayList<TimePeriod> classes) {
 		this.name = name;
@@ -30,6 +29,7 @@ public class Section {
 	/**
 	 * Checks if the section conflicts with the other.
 	 * 
+	 * @param section - the section to compare with
 	 * @return false if there is no conflict
 	 */
 	public boolean conflicts(Section section) {
