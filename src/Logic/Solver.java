@@ -84,12 +84,12 @@ public class Solver {
 	private boolean isComplete(int[] schedule, int gen) {
 
 		// The node's relations to the other nodes
-		boolean[] compareTo = matrix.getNodeConnections(schedule[gen]);
+		boolean[] conflicts = matrix.getNodeConnections(schedule[gen]);
 
 		// gen+1 in order not to compare to itself
 		for (int i = gen + 1; i < schedule.length; i++) {
 			// If there is a conflict, returns false 
-			if (compareTo[schedule[i]] == true)
+			if (conflicts[schedule[i]] == true)
 				return false;
 		}
 		// If the method hasn't checked all the elements, recursion
@@ -123,8 +123,7 @@ public class Solver {
 	 */
 	public DefaultListModel<String> getScheduleOptions() {
 
-		// This is messy and scary, and at this point 
-		// I am too lazy to comment it. Whatever.
+		// This is messy and scary, and at this point I am too lazy to comment it
 		DefaultListModel<String> listModel = new DefaultListModel<String>();
 		StringBuilder helper;
 		int scheduleNumber = 1;
@@ -167,7 +166,6 @@ public class Solver {
 	 * @param classes - the subjects to form the nodes from
 	 */
 	private void classesToNodes(ArrayList<Subject> classes) {	
-
 		allNodes = new ArrayList<Node>();
 
 		for (Subject subject : classes) {
