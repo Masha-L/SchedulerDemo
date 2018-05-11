@@ -71,9 +71,9 @@ public class Subject {
 		else {
 			for (Section lecture : lectures) {
 				for (Section lab : labs) {
-					nodeList.add(new Node(lecture, lab, this));
+					if(!lecture.conflicts(lab))
+						nodeList.add(new Node(lecture, lab, this));
 				}
-
 			}
 		}
 
