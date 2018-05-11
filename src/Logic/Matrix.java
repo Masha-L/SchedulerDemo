@@ -24,7 +24,6 @@ public class Matrix {
 	 * @param numS - the preferred number of classes 
 	 */
 	public Matrix(ArrayList<Node> nodes, int numS) {	
-
 		// Creates the matrix of the right size
 		int numNodes = nodes.size();	
 		matrix = new boolean[numNodes][numNodes];
@@ -48,17 +47,20 @@ public class Matrix {
 	private void buildMatrix(ArrayList<Node> nodes) {
 
 		// Gets the size of the matrix
-		int matrixSize = matrix.length;	
+		int matrixSize = matrix.length; 
 
-		Node node, anotherNode;		
+		Node node, anotherNode; 
 
 		// Gets each two nodes's intersection and compares them
 		for (int row = 0; row < matrixSize; row++) {
 			node = nodes.get(row);
-			for (int col = 0; col < matrixSize; col++) {
-				anotherNode = nodes.get(col);
-				if (node.conflicts(anotherNode)) {
+			for (int col = row; col < matrixSize; col++) {
+				if (row == col)
 					addConflict(row, col);
+				else {
+					anotherNode = nodes.get(col);
+					if (node.conflicts(anotherNode)) 
+						addConflict(row, col);
 				}
 			}
 		}
@@ -85,7 +87,6 @@ public class Matrix {
 			}
 		}
 	}
-
 
 
 	/** 
@@ -134,7 +135,7 @@ public class Matrix {
 			if (isValid(otherNode) && !areInConflict(node, otherNode))
 				degree++;
 		}
-		
+
 		return degree;
 	}
 
@@ -168,10 +169,10 @@ public class Matrix {
 	 * @return array of the valid indices
 	 */
 	public int[] validNodes() {
-		
+
 		int[] chooseFrom = new int[numValid];
 		int currentIndex = 0;
-		
+
 		// Adds all valid indices to the array
 		for (int node = 0; node < matrix.length; node++) {
 			if (isValid(node)) {
@@ -179,7 +180,7 @@ public class Matrix {
 				currentIndex++;
 			}
 		}
-		
+
 		return chooseFrom;
 	}
 

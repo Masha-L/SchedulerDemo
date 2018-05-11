@@ -11,7 +11,7 @@ import Database.Subject;
 public class Solver {
 
 	// The schedule options represented by the node indexes
-	private ArrayList<int[]> scheduleNodes = new ArrayList<int[]>();
+	private ArrayList<int[]> scheduleOptions = new ArrayList<int[]>();
 	// The node matrix
 	private Matrix matrix;
 	// The ordered list of all schedule nodes
@@ -64,7 +64,7 @@ public class Solver {
 					sched[newElm] = chFrom[nextElm];
 					if (leftToAdd == 1) {
 						if (isComplete(sched, 0)) {
-							scheduleNodes.add(sched.clone());
+							scheduleOptions.add(sched.clone());
 						}
 					}
 					traverseGraph(sched, chFrom, leftToAdd - 1, newElm + 1, nextElm + 1);
@@ -128,8 +128,8 @@ public class Solver {
 		StringBuilder helper;
 		int scheduleNumber = 1;
 
-		if (!scheduleNodes.isEmpty()) {
-			for (int[] list : scheduleNodes) {
+		if (!scheduleOptions.isEmpty()) {
+			for (int[] list : scheduleOptions) {
 				listModel.addElement("#" + scheduleNumber);
 				for (int num : list) {
 					helper = new StringBuilder();
