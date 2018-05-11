@@ -12,6 +12,7 @@ import java.util.TreeMap;
 public class Database {
 
 	private TreeMap <String, ArrayList<Subject>> classesTable;
+	private ArrayList <String> departmentNames;
 
 	/**
 	 * Constructor.
@@ -19,6 +20,7 @@ public class Database {
 	 */
 	public Database() {
 		classesTable = new TreeMap<String, ArrayList<Subject>>();
+		departmentNames = new ArrayList<String>();
 	}
 
 	/**
@@ -30,13 +32,24 @@ public class Database {
 	public void addSubject(String department, Subject subject) {
 		/*
 		 *  Creates a new department, if it did not exist prior.
+		 *  Adds department name to the list of names
 		 *  Then, adds the subject to the department.
 		 */
 
-		if (classesTable.get(department) == null) {
-			classesTable.put(department, new ArrayList<Subject>());
+		ArrayList<Subject> currentDepartment = classesTable.get(department);
+		
+		if (currentDepartment == null) {
+			
+			//add department to list of names
+			departmentNames.add(department);
+			
+			//add department and subject(s) to the tree map
+			ArrayList<Subject> subjectList = new ArrayList<Subject>();
+			subjectList.add(subject);
+			classesTable.put(department, subjectList);
 		}
-		classesTable.get(department).add(subject);
+		else
+			currentDepartment.add(subject);
 	}
 
 	/**
@@ -50,15 +63,13 @@ public class Database {
 		 * Gets the keys for the table and 
 		 * puts the into a string array
 		 */
-		
-		Set<String> keySet = classesTable.keySet();
-		String[] names = new String[keySet.size() + 1];
+		String[] names = new String[departmentNames.size() + 1];
 		
 		// The default value for the combo box
 		names[0] = "Select Department";
 
 		int count = 1;
-		for (String name : keySet) {
+		for (String name : departmentNames) {
 			names[count] = name;
 			count++;
 		}
