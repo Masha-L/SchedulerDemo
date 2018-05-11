@@ -1,6 +1,5 @@
 package Database;
 import java.util.ArrayList;
-import java.util.Set;
 import java.util.TreeMap;
 /**
  * Provides the database for the offered classes.
@@ -31,19 +30,15 @@ public class Database {
 	 */
 	public void addSubject(String department, Subject subject) {
 		/*
-		 *  Creates a new department, if it did not exist prior.
-		 *  Adds department name to the list of names
+		 *  Creates a new department, if it did not exist before.
+		 *  Adds department name to the list of names.
 		 *  Then, adds the subject to the department.
 		 */
-
 		ArrayList<Subject> currentDepartment = classesTable.get(department);
 		
-		if (currentDepartment == null) {
-			
-			//add department to list of names
+		if (currentDepartment == null) {		
 			departmentNames.add(department);
 			
-			//add department and subject(s) to the tree map
 			ArrayList<Subject> subjectList = new ArrayList<Subject>();
 			subjectList.add(subject);
 			classesTable.put(department, subjectList);
@@ -53,16 +48,12 @@ public class Database {
 	}
 
 	/**
-	 * Returns the departments' names listed.
+	 * Puts the department names into a string array.
 	 * The method is required for the GUI.
 	 * 
 	 * @return the array of departments' names
 	 */
 	public String[] getDepartmentNames() {
-		/*
-		 * Gets the keys for the table and 
-		 * puts the into a string array
-		 */
 		String[] names = new String[departmentNames.size() + 1];
 		
 		// The default value for the combo box
