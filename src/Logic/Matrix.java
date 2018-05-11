@@ -25,9 +25,9 @@ public class Matrix {
 	 */
 	public Matrix(ArrayList<Node> nodes, int numS) {	
 
-		// Gets the size of the matrix
-		int numNodes = nodes.size();	
 		// Creates the matrix of the right size
+		int numNodes = nodes.size();	
+		matrix = new boolean[numNodes][numNodes];
 		buildMatrix(nodes);
 
 		// Initializes the array to hold the node's degrees
@@ -47,9 +47,8 @@ public class Matrix {
 	 */
 	private void buildMatrix(ArrayList<Node> nodes) {
 
-		// Creates an empty matrix
-		int matrixSize = nodes.size();	
-		matrix = new boolean[matrixSize][matrixSize];
+		// Gets the size of the matrix
+		int matrixSize = matrix.length;	
 
 		Node node, anotherNode;		
 
