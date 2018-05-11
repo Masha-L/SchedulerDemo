@@ -63,34 +63,37 @@ public class Node {
 	 * @return true if there is a conflict
 	 */
 	public boolean conflicts(Node node) {
-
+		
 		// If the subject is the same, there is a conflict.
 		if (subject.equals(node.getSubject())) 
 			return true;
 
 		Section lectures = node.getLectureSection();
-		Section labs = node.getLabSection();
+		Section labs = node.getLabSection();		
+		
+		if (!conflicts(lectureSection, lectures))
+			if (!conflicts(lectureSection, labs))
+				if (!conflicts(labSection, lectures))
+					if (!conflicts(labSection, labs))
+						return false;
+		return true;
+	}
 
-		// Checks if lectures and/or labs of the nodes have conflicts
-		if (lectureSection != null && lectures != null)
-			if (lectureSection.conflicts(lectures))
-				return true;
-
-		if (lectureSection != null && labs != null)
-			if (lectureSection.conflicts(labs))
-				return true;
-
-		if (labSection != null && lectures != null)
-			if (labSection.conflicts(lectures)) 
-				return true;
-
-		if (labSection != null && labs != null)
-			if (labSection.conflicts(labs)) 
+	/**
+	 * Checks if two sections are in conflict.
+	 * 
+	 * @param sec1 - the first section
+	 * @param sec2 - the second section
+	 * @return true if there is a conflict
+	 */
+	private boolean conflicts(Section sec1, Section sec2) {
+		if (sec1 != null && sec2 != null)
+			if (sec1.conflicts(sec2)) 
 				return true;
 
 		return false;
 	}
-
+	
 	/**
 	 * Returns the subject name
 	 * 
