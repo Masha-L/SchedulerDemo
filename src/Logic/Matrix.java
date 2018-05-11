@@ -33,8 +33,12 @@ public class Matrix {
 		degrees = new int[numNodes];
 		// Initially, all nodes are valid
 		numValid = numNodes;
-		// Assigns validity to the nodes using their degrees
-		assignValidity(numS);
+		/* Assigns validity to the nodes using their degrees
+		 * Here we need to pass the minimum valid degree of a node
+		 * minValidDdegree = N-1, since the schedule of N classes
+		 * includes this node and N-1 of others. 
+		 */
+		assignValidity(numS-1);
 	}
 
 
