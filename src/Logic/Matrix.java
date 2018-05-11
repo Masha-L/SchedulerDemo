@@ -77,7 +77,7 @@ public class Matrix {
 		// True if iteration is not over
 		boolean changed = true;
 
-		while(changed) {
+		while (changed) {
 			changed = false;
 			// Checks if any nodes became invalid during the last iteration
 			for (int node = 0; node < matrix.length; node++) {
