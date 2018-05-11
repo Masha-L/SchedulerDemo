@@ -191,6 +191,7 @@ public class Matrix {
 	 */
 	private void addConflict(int oneNode, int anotherNode) {	
 		matrix[oneNode][anotherNode] = true;
+		matrix[anotherNode][oneNode] = true;
 	}
 
 	/**
