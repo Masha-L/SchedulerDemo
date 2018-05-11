@@ -34,7 +34,7 @@ public class Matrix {
 		// Initially, all nodes are valid
 		numValid = numNodes;
 		// Assigns validity to the nodes using their degrees
-		assignValidity(numS);
+		assignValidity(numS-1);
 	}
 
 
