@@ -28,7 +28,7 @@ public class Solver {
 	public Solver(ArrayList<Subject> classes, int numS) {
 		classesToNodes(classes);
 		matrix = new Matrix(allNodes, numS);	
-		
+
 		createValidSchedules(numS);
 	}
 
@@ -171,5 +171,10 @@ public class Solver {
 		for (Subject subject : classes) {
 			allNodes.addAll(subject.getAllNodes());
 		}	
+	}
+
+	// FOR THE TESTER	
+	public int getScheduleOptionsNumber() {
+		return scheduleOptions.size();
 	}
 }
