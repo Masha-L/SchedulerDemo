@@ -21,20 +21,24 @@ public class Matrix {
 	 * Takes the list of the chosen classes from the controller
 	 * 
 	 * @param nodes - the list of the schedule nodes
-	 * @param numS - the preferred number of classes 
+	 * @param numClasses - the preferred number of classes 
 	 */
-	public Matrix(ArrayList<Node> nodes, int numS) {	
-		// Creates the matrix of the right size
+	public Matrix(ArrayList<Node> nodes, int numClasses) {	
+		/*
+		 * Creates the matrix of the right size.
+		 * Forms the initial matrix that reflects 
+		 * relations between each pair of nodes.
+		 */
 		int numNodes = nodes.size();	
 		matrix = new boolean[numNodes][numNodes];
 		fillMatrix(nodes);
 
-		// Initializes the array to hold the node's degrees
+		// Initializes the array to hold the nodes' degrees
 		degrees = new int[numNodes];
-		// Initially, all nodes are valid
+		// Initially, all nodes are assumed to be valid
 		numValid = numNodes;
 		// Assigns validity to the nodes using their degrees
-		assignValidity(numS - 1);
+		assignValidity(numClasses - 1);
 	}
 
 
@@ -71,9 +75,9 @@ public class Matrix {
 	 * Iteratively counts nodes's degrees to determine 
 	 * if they can be used in schedules
 	 * 
-	 * @param numS - the preferred number of classes 
+	 * @param numClasses - the preferred number of classes 
 	 */
-	private void assignValidity(int numS) {
+	private void assignValidity(int numClasses) {
 		// True if iteration is not over
 		boolean changed = true;
 
@@ -81,7 +85,7 @@ public class Matrix {
 			changed = false;
 			// Checks if any nodes became invalid during the last iteration
 			for (int node = 0; node < matrix.length; node++) {
-				if (becameInvalid(node, numS)) {
+				if (becameInvalid(node, numClasses)) {
 					changed = true;
 				}
 			}
@@ -95,25 +99,25 @@ public class Matrix {
 	 * desired number of classes. 
 	 * Updates the degree if appropriate, otherwise sets the node invalid.
 	 * 
-	 * @param node - the node to calculate the degree
-	 * @param numS - the preferred number of classes 
+	 * @param nodeIndex - the node's index
+	 * @param numClasses - the preferred number of classes 
 	 * @return false if the node did not become invalid
 	 */
-	private boolean becameInvalid(int node, int numS) {
+	private boolean becameInvalid(int nodeIndex, int numClasses) {
 
 		/*
 		 * If the node is valid, recalculates and updates 
 		 * its degree in the array, setting it either
 		 * valid or invalid.
 		 */
-		if (isValid(node)) {
-			int degree = vertexDegree(node);		
-			if (degree < numS) {
-				setNodeInvalid(node);
+		if (isValid(nodeIndex)) {
+			int degree = vertexDegree(nodeIndex);		
+			if (degree < numClasses) {
+				setNodeInvalid(nodeIndex);
 				return true;
 			}
 			else
-				degrees[node] = degree;
+				degrees[nodeIndex] = degree;
 		}
 
 		return false;
@@ -122,17 +126,17 @@ public class Matrix {
 	/**
 	 * Calculates the degree of a node.
 	 * 
-	 * @param node - the node in the matrix
+	 * @param nodeIndex - the node's index
 	 * @return the degree of the node
 	 */
-	private int vertexDegree(int node) {
+	private int vertexDegree(int nodeIndex) {
 		/*
 		 * Increments the degree counter for each node that
 		 * is valid and does not conflict with the given one 
 		 */
 		int degree = 0;
-		for (int otherNode = 0; otherNode < matrix.length; otherNode++) {	
-			if (isValid(otherNode) && !areInConflict(node, otherNode))
+		for (int anotherIndex = 0; anotherIndex < matrix.length; anotherIndex++) {	
+			if (isValid(anotherIndex) && !areInConflict(nodeIndex, anotherIndex))
 				degree++;
 		}
 
@@ -142,10 +146,10 @@ public class Matrix {
 	/**
 	 * Sets the node invalid to be in a schedule
 	 * 
-	 * @param node - the invalid node
+	 * @param nodeIndex - the invalid node
 	 */
-	private void setNodeInvalid(int node) {
-		degrees[node] = -1;
+	private void setNodeInvalid(int nodeIndex) {
+		degrees[nodeIndex] = -1;
 		// Decrements the number of the valid nodes
 		numValid--;
 	}
@@ -154,11 +158,11 @@ public class Matrix {
 	/**
 	 * Checks if the node is valid
 	 * 
-	 * @param node - the node to be checked
+	 * @param nodeIndex - the node to be checked
 	 * @return true if the node is valid
 	 */
-	private boolean isValid(int node) {
-		return degrees[node] != -1;
+	private boolean isValid(int nodeIndex) {
+		return degrees[nodeIndex] != -1;
 	}
 
 	/**
@@ -174,9 +178,9 @@ public class Matrix {
 		int currentIndex = 0;
 
 		// Adds all valid indices to the array
-		for (int node = 0; node < matrix.length; node++) {
-			if (isValid(node)) {
-				chooseFrom[currentIndex] = node;
+		for (int nodeIndex = 0; nodeIndex < matrix.length; nodeIndex++) {
+			if (isValid(nodeIndex)) {
+				chooseFrom[currentIndex] = nodeIndex;
 				currentIndex++;
 			}
 		}

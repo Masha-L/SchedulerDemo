@@ -39,11 +39,10 @@ public class Solver {
 	 *
 	 * @param sched - the empty array of size K
 	 * @param validNodes - the array of valid vertices 
-	 * @param leftToAdd - the number of subjects left to add (K - gen)
 	 * @param gen - the level of recursion (generation)
 	 * @param startFrom - points to the next place in the array to fill
 	 */
-	private void traverseGraph(int[] sched, int[] chFrom, int leftToAdd, int gen, int startFrom) {
+	private void traverseGraph(int[] sched, int[] chFrom, int gen, int startFrom) {
 
 		// Checks that we are not out of bounds yet and haven't explored all possible options
 		if (gen < sched.length && startFrom < chFrom.length) {
@@ -62,12 +61,14 @@ public class Solver {
 			for (int newElm = gen; newElm < sched.length; newElm++) {
 				for (int nextElm = startFrom; nextElm < chFrom.length; nextElm++) {
 					sched[newElm] = chFrom[nextElm];
-					if (leftToAdd == 1) {
+					
+					if (gen == sched.length - 1) {
 						if (isComplete(sched, 0)) {
 							scheduleOptions.add(sched.clone());
 						}
 					}
-					traverseGraph(sched, chFrom, leftToAdd - 1, newElm + 1, nextElm + 1);
+
+					traverseGraph(sched, chFrom, newElm + 1, nextElm + 1);
 				}
 			}
 		}
@@ -112,7 +113,7 @@ public class Solver {
 		 * uses the preferred number of classes
 		 * and the start indices for recursion.
 		 */
-		traverseGraph(new int[numS], matrix.validNodes(), numS, 0, 0);	
+		traverseGraph(new int[numS], matrix.validNodes(), 0, 0);	
 	}
 
 
