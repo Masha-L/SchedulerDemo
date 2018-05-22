@@ -17,19 +17,20 @@ public class Solver {
 	// The ordered list of all schedule nodes
 	private ArrayList<Node> allNodes;
 
+
 	/**
 	 * Constructor.
 	 * Creates the list of nodes, builds the adjacency matrix,
 	 * and generates the list of schedules.
 	 * 
 	 * @param classes - chosen by user
-	 * @param numS - the number of the subjects the student wants to take
+	 * @param numClasses - the number of the subjects the student wants to take
 	 */
-	public Solver(ArrayList<Subject> classes, int numS) {
+	public Solver(ArrayList<Subject> classes, int numClasses) {
 		classesToNodes(classes);
-		matrix = new Matrix(allNodes, numS);	
+		matrix = new Matrix(allNodes, numClasses);	
 
-		createValidSchedules(numS);
+		createValidSchedules(numClasses);
 	}
 
 
@@ -61,9 +62,9 @@ public class Solver {
 			for (int newElm = gen; newElm < sched.length; newElm++) {
 				for (int nextElm = startFrom; nextElm < chFrom.length; nextElm++) {
 					sched[newElm] = chFrom[nextElm];
-					
+
 					if (gen == sched.length - 1) {
-						if (isComplete(sched, 0)) {
+						if (isComplete(sched)) {
 							scheduleOptions.add(sched.clone());
 						}
 					}
@@ -75,28 +76,18 @@ public class Solver {
 	}	
 
 	/**
-	 * Checks if the graph is complete. Employs recursion 
-	 * to compare each subject with the other ones
+	 * Checks if the graph is complete.
 	 * 
 	 * @param schedule - the array of the node indices
-	 * @param gen - the round of recursion
 	 * @return true if the graph is complete
 	 */
-	private boolean isComplete(int[] schedule, int gen) {
-
-		// The node's relations to the other nodes
-		boolean[] conflicts = matrix.getNodeConnections(schedule[gen]);
-
-		// gen+1 in order not to compare to itself
-		for (int i = gen + 1; i < schedule.length; i++) {
-			// If there is a conflict, returns false 
-			if (conflicts[schedule[i]] == true)
-				return false;
+	private boolean isComplete(int[] schedule) {
+		for (int oneClass = 0; oneClass < schedule.length - 1; oneClass++) {
+			for (int anotherClass = oneClass + 1; anotherClass < schedule.length; anotherClass++) {
+				if (matrix.areInConflict(schedule[oneClass], schedule[anotherClass]))
+					return false;
+			}
 		}
-		// If the method hasn't checked all the elements, recursion
-		if (gen < schedule.length - 1)
-			return isComplete(schedule, gen + 1);
-
 		return true;
 	}
 
@@ -104,16 +95,16 @@ public class Solver {
 	 * Traverses the graph to find every combination possible
 	 * and verifies the schedules 
 	 *  
-	 * @param numS - the preferred number of classes
+	 * @param numClasses - the preferred number of classes
 	 */
-	private void createValidSchedules(int numS) {
+	private void createValidSchedules(int numClasses) {
 		/*
 		 * Creates an empty array for the schedules;
 		 * gets the valid nodes from the matrix;
 		 * uses the preferred number of classes
 		 * and the start indices for recursion.
 		 */
-		traverseGraph(new int[numS], matrix.validNodes(), 0, 0);	
+		traverseGraph(new int[numClasses], matrix.validNodes(), 0, 0);	
 	}
 
 

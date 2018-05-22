@@ -122,7 +122,7 @@ public class SchedSolverTest {
 		assertEquals(solver.getScheduleOptionsNumber(), 4);
 	}
 
-	
+
 	/** 
 	 * One Subjects Schedule (two passed)
 	 */
@@ -133,13 +133,13 @@ public class SchedSolverTest {
 		classes1.add(algorithms);
 		solver = new Solver(classes1, 1);
 		assertEquals(solver.getScheduleOptionsNumber(), 5);	
-		
+
 		ArrayList<Subject> classes2 = new ArrayList<Subject>();
 		classes2.add(cellMolecular);
 		classes2.add(korean);
 		solver = new Solver(classes2, 1);
 		assertEquals(solver.getScheduleOptionsNumber(), 6);
-		
+
 		ArrayList<Subject> classes3 = new ArrayList<Subject>();
 		classes3.add(mathMethods);
 		classes3.add(compSystems);
